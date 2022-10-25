@@ -2,7 +2,7 @@ import { Container, Title } from "./styles";
 
 interface ButtonProps {
     title: string;
-    color: string;
+    color?: string;
     onPress: () => void;
 }
 

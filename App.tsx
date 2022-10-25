@@ -6,6 +6,7 @@ import { Archivo_400Regular, Archivo_500Medium, Archivo_600SemiBold } from '@exp
 import { Home } from "./src/screens/Home";
 import theme from './src/styles/theme';
 import { CarDetails } from './src/screens/CarDetails';
+import { Scheduling } from './src/screens/Scheduling';
 
 export function App() {
   let [fontsLoaded] = useFonts({
@@ -22,7 +23,7 @@ export function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <CarDetails />
+      <Scheduling />
     </ThemeProvider>
   )
 }
