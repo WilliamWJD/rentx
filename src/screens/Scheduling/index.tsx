@@ -2,10 +2,11 @@ import { StatusBar } from "react-native";
 import { useTheme } from "styled-components";
 
 import { BackButton } from "../../components/BackButton";
+import { Button } from "../../components/Button";
 
 import ArrowLeSvg from '../../assets/arrow.svg';
 
-import { Container, Title, Header, RentalPeriod, DateInfo, DateTitle, DateValue } from "./styles";
+import { Container, Title, Header, RentalPeriod, DateInfo, DateTitle, DateValue, Content, Footer } from "./styles";
 
 export function Scheduling() {
     const theme = useTheme();
@@ -31,8 +32,15 @@ export function Scheduling() {
                         <DateValue selected={false}></DateValue>
                     </DateInfo>
                 </RentalPeriod>
-
             </Header>
+            <Content>
+
+            </Content>
+            <Footer>
+                <Button
+                    title="Confirmar"
+                />
+            </Footer>
         </Container>
     )
 }
