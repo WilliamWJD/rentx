@@ -1,6 +1,7 @@
 import { BackButton } from "../../components/BackButton";
 import { ImageSlider } from "../../components/ImageSlider";
 import { Acessory } from "../../components/Acessory";
+import { Button } from "../../components/Button";
 
 import SpeedSvg from '../../assets/speed.svg';
 import AcelerationSvg from '../../assets/acceleration.svg';
@@ -9,7 +10,7 @@ import GasolineSvg from '../../assets/gasoline.svg';
 import ExchangeSvg from '../../assets/exchange.svg';
 import PeopleSvg from '../../assets/people.svg';
 
-import { Container, Header, CarImages, Content, Details, Description, Brand, Name, Rent, Period, Price, About, Acessories } from "./styles";
+import { Container, Header, CarImages, Content, Details, Description, Brand, Name, Rent, Period, Price, About, Acessories, Footer } from "./styles";
 
 export function CarDetails() {
     return (
@@ -48,6 +49,9 @@ export function CarDetails() {
                     A personificação do mais puro dinamismo: uma parte frontal impressionante, que transborda potência, em conjunto com as linhas de fluxo exclusivas, uma postura ampla e dominante, assim como uma traseira impressionante. Impulsionado por um V6 Biturbo, com 450 CV.
                 </About>
             </Content>
+            <Footer>
+                <Button title="Confirmar" />
+            </Footer>
         </Container>
     )
 }
