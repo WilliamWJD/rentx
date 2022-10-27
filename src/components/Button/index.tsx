@@ -1,4 +1,5 @@
 import { Container, Title } from "./styles";
+import { useTheme } from 'styled-components';
 
 interface ButtonProps {
     title: string;
@@ -7,8 +8,10 @@ interface ButtonProps {
 }
 
 export function Button({ title, color, ...rest }: ButtonProps) {
+    const theme = useTheme();
+
     return (
-        <Container color={color} {...rest}>
+        <Container color={color ? color : theme.colors.main} {...rest}>
             <Title>{title}</Title>
         </Container>
     )

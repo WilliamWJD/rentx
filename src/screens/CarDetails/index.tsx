@@ -1,3 +1,5 @@
+import { useNavigation, ParamListBase, NavigationProp } from '@react-navigation/native';
+
 import { BackButton } from "../../components/BackButton";
 import { ImageSlider } from "../../components/ImageSlider";
 import { Acessory } from "../../components/Acessory";
@@ -11,10 +13,22 @@ import ExchangeSvg from '../../assets/exchange.svg';
 import PeopleSvg from '../../assets/people.svg';
 
 import { Container, Header, CarImages, Content, Details, Description, Brand, Name, Rent, Period, Price, About, Acessories, Footer } from "./styles";
+import { StatusBar } from 'react-native';
 
 export function CarDetails() {
+    const navigation = useNavigation<NavigationProp<ParamListBase>>();
+
+    function handleConfirmRental() {
+        navigation.navigate("Scheduling");
+    }
+
     return (
         <Container>
+            <StatusBar
+                barStyle="light-content"
+                backgroundColor="transparent"
+                translucent
+            />
             <Header>
                 <BackButton onPress={() => { }} />
             </Header>
@@ -50,7 +64,7 @@ export function CarDetails() {
                 </About>
             </Content>
             <Footer>
-                <Button title="Confirmar" onPress={() => { }} />
+                <Button title="Confirmar" onPress={handleConfirmRental} />
             </Footer>
         </Container>
     )
