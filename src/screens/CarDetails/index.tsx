@@ -1,4 +1,4 @@
-import { useNavigation, ParamListBase, NavigationProp } from '@react-navigation/native';
+import { useNavigation, ParamListBase, NavigationProp, useRoute } from '@react-navigation/native';
 
 import { BackButton } from "../../components/BackButton";
 import { ImageSlider } from "../../components/ImageSlider";
@@ -14,12 +14,24 @@ import PeopleSvg from '../../assets/people.svg';
 
 import { Container, Header, CarImages, Content, Details, Description, Brand, Name, Rent, Period, Price, About, Acessories, Footer } from "./styles";
 import { StatusBar } from 'react-native';
+import { CarDTO } from '../../dtos/CarDTO';
+
+interface Params {
+    car: CarDTO;
+}
 
 export function CarDetails() {
     const navigation = useNavigation<NavigationProp<ParamListBase>>();
+    const route = useRoute();
+
+    const { car } = route.params as Params;
 
     function handleConfirmRental() {
         navigation.navigate("Scheduling");
+    }
+
+    function handleGoBack() {
+        navigation.goBack();
     }
 
     return (
@@ -30,38 +42,39 @@ export function CarDetails() {
                 translucent
             />
             <Header>
-                <BackButton onPress={() => { }} />
+                <BackButton onPress={handleGoBack} />
             </Header>
             <CarImages>
                 <ImageSlider
-                    imagesUrl={['https://www.pngmart.com/files/1/Audi-RS5-Red-PNG.png']}
+                    imagesUrl={car.photos}
                 />
             </CarImages>
             <Content>
                 <Details>
                     <Description>
-                        <Brand>Audi</Brand>
-                        <Name>Audo RS5</Name>
+                        <Brand>{car.brand}</Brand>
+                        <Name>{car.name}</Name>
                     </Description>
 
                     <Rent>
-                        <Period>Ao dia</Period>
-                        <Price>R$ 580</Price>
+                        <Period>{car.rent.period}</Period>
+                        <Price>R$ {car.rent.price}</Price>
                     </Rent>
                 </Details>
 
                 <Acessories>
-                    <Acessory name="380 Km/h" icon={SpeedSvg} />
-                    <Acessory name="3.2s" icon={AcelerationSvg} />
-                    <Acessory name="800 HP" icon={ForceSvg} />
-                    <Acessory name="Gasolina" icon={GasolineSvg} />
-                    <Acessory name="Auto" icon={ExchangeSvg} />
-                    <Acessory name="4 Pessoas" icon={PeopleSvg} />
+                    {
+                        car.accessories.map(acessory => (
+                            <Acessory
+                                key={acessory.type}
+                                name={acessory.name}
+                                icon={SpeedSvg}
+                            />
+                        ))
+                    }
                 </Acessories>
 
-                <About>
-                    A personificação do mais puro dinamismo: uma parte frontal impressionante, que transborda potência, em conjunto com as linhas de fluxo exclusivas, uma postura ampla e dominante, assim como uma traseira impressionante. Impulsionado por um V6 Biturbo, com 450 CV.
-                </About>
+                <About>{car.about}</About>
             </Content>
             <Footer>
                 <Button title="Confirmar" onPress={handleConfirmRental} />
